@@ -1,0 +1,30 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create new page
+{% endblock %}
+
+{% block body %}
+
+    <p>Create your new page here!</p>
+
+    {% if error_message %}
+        <div class="error-message">
+            {{ error_message }}
+        </div>
+    {% endif %}
+
+    <form method="post" action="{% url 'save_new_page' %}">
+        {% csrf_token %}
+        <div>
+            <input class="text" name="title" placeholder="Enter title here">
+        </div> 
+        <div>
+            <textarea name="content" placeholder="Enter page content here in Markdown"></textarea>
+        </div>
+        <div>
+            <input class="submit" value="Save page" type="submit">
+        </div>
+    </form>
+
+{% endblock %}
